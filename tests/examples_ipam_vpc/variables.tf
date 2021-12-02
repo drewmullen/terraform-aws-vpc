@@ -1,0 +1,1 @@
+../../examples/ipam-vpc/variables.tf

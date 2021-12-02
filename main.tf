@@ -16,6 +16,10 @@ locals {
     ),
     0,
   )
+  ipv4_using_ipam                 = var.ipv4_ipam_pool_id == null ? false : true
+  ipv4_ipam_with_explicit_cidr    = var.ipv4_ipam_pool_id != null && var.cidr != null ? true : false
+  ipv4_ipam_with_explicit_netmask = local.ipv4_using_ipam && var.ipv4_netmask_length != null ? var.ipv4_netmask_length : null
+  cidr                            = !local.ipv4_using_ipam || local.ipv4_ipam_with_explicit_cidr == true ? var.cidr : null
 }
 
 ################################################################################
